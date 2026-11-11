@@ -1,5 +1,17 @@
-# Object file
-*.o
+# Obsidian
+.obsidian/
+.trash/
 
-# Ada Library Information
-*.ali
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/
+*.swp
+*~
+
+# Drafts
+*.draft.md
+_tmp_imp/
