@@ -132,6 +132,7 @@ MTR-P-System/
 ├── CONTRIBUTING.md                        # 如何贡献 / how to contribute
 ├── LICENSE                                # CC BY 4.0
 └── docs/
+    ├── dual-track-research-system-zh.md   # 双轨研发的 AI 动态研究系统（工程类 + 工艺类）
     ├── comparison-ray-dalio-zh.md         # 与达利欧《原则》的异同对照
     ├── reference-addy-osmani-zh.md        # Addy Osmani：管理 Agent 的十条建议
     └── source-addy-osmani-en.md           # Addy Osmani 三篇原文合集（英文）

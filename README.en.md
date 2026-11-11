@@ -98,6 +98,7 @@ MTR-P-System/
 ├── CONTRIBUTING.md
 ├── LICENSE                                # CC BY 4.0
 └── docs/
+    ├── dual-track-research-system-zh.md   # AI research system for engineering + process R&D
     ├── comparison-ray-dalio-zh.md         # vs. Ray Dalio's *Principles*
     ├── reference-addy-osmani-zh.md        # Addy Osmani: 10 rules for managing agents
     └── source-addy-osmani-en.md           # Addy Osmani: three essays, full text
