@@ -1,14 +1,38 @@
 # MTR-P · A Knowledge–Project Governance System for Human–AI Work
 
-> `MTR` is what I *know*. `P` is what I *built*. A knowledge router connects them.
+**MTR-P Knowledge–Project System**
+
+> **Agents produce. You judge.**
+>
+> Output grows tenfold — your judgment must not collapse. That's what this framework is for.
 
 ---
 
-## What is this
+## In one sentence
 
-A governance framework — **23 principles across 6 layers, built on a 5-store model** — for keeping human judgment intact and risk under control when AI does much of the work.
+**A R&D and risk-management framework that welds three things into one: agent development, a knowledge base, and a project repository.**
+23 principles × 6 layers + a four-store model + one knowledge router.
 
-It is **not** a prompt library and **not** an agent framework. It answers one question:
+---
+
+## What it governs
+
+Each of the three works on its own. Put them together and things start to slip. MTR-P's job is to weld them into one system.
+
+| Pillar | What happens without it | How the framework handles it |
+|---|---|---|
+| **Agent development** | Too many in parallel, nobody verifies; output outpaces review | WIP limits · verification as a hard exit · hook enforcement · least privilege |
+| **Knowledge base (MTR)** | Knowledge expires, sinks, contaminates itself | Three tiers (M/T/R) · dynamic floating · retrieval priorities |
+| **Project base (P)** | Code has no "why"; knowledge and implementation don't talk | Bidirectional refs · diff proposals · Git as single source of truth |
+| **Knowledge router** | No deterministic path between the three; it all lives in someone's head | Rules decide what to read and where to write; auditable, non-overreaching |
+
+**The core tension**: agents make production cheap → output explodes → but verification, comprehension, and archiving costs don't fall with it. The framework keeps those three under control.
+
+---
+
+## The question it answers
+
+It is **not** a prompt library and **not** an agent framework.
 
 > **After AI multiplies your output tenfold, are you still the person who can tell right from wrong?**
 
@@ -74,7 +98,7 @@ Full text: [`PRINCIPLES-en.md`](PRINCIPLES-en.md) (English) · [`PRINCIPLES-zh.m
 
 ## Quick start in 30 seconds
 
-No five-store setup required. Start with three moves:
+No full four-store setup required. Start with three moves:
 
 1. **Give every task a check that can pass or fail** — tests, build exit codes, lint, screenshots. Ask the agent to *show the result*, not claim completion.
 2. **Write anything you corrected twice into your instruction file** — `AGENTS.md` / `CLAUDE.md`.

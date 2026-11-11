@@ -1,26 +1,54 @@
 # MTR-P · A Knowledge–Project Governance System for Human–AI Work
 
-**MTR-P 知识-项目体系 · 人机协作治理框架**
+**MTR-P 知识-项目体系**
 
-> Combining AI knowledge with project R&D system and principles.
-> 结合 AI 的知识-项目研发体系与原则。
-
-> `MTR` 是"我知道什么"，`P` 是"我做了什么"，中间靠知识路由双向打通。
-> `MTR` is what I *know*. `P` is what I *built*. A knowledge router connects them.
+> **Agent 负责生产，你负责判断。**
+>
+> 产出涨十倍，判断力不能崩——这套框架就是干这个的。
 
 ---
 
-## 这是什么 / What is this
+## 一句话说清 / In one sentence
 
-一套 **23 条原则 × 6 层 + 5 库模型** 的治理体系，用于在 AI 深度参与研发的场景下，**让人始终保有判断力并控制住风险**。
+**把「Agent 开发 + 知识库 + 项目库」焊成一个整体的研发与风险管理框架。**
+23 条原则 × 6 层 + 4 库模型 + 1 个知识路由中间件。
 
-它不是提示词模板库，也不是 Agent 框架。它回答一个问题：
+**A R&D and risk-management framework that welds three things into one: agent development, a knowledge base, and a project repository.**
+23 principles × 6 layers + a four-store model + one knowledge router.
+
+---
+
+## 它管什么 / What it governs
+
+三件事各自都能跑，拼在一起就开始失控。MTR-P 的职责是把它们焊成整体。
+
+| 支柱 | 不管会怎样 | 框架怎么管 |
+|---|---|---|
+| **Agent 开发** | 并行开多了没人验，产出快过审查速度 | WIP 上限 · 验证即硬出口 · hook 强制 · 最小权限 |
+| **知识库 MTR** | 知识过期、沉没、新旧互相污染 | 三层分级（M/T/R）· 动态沉浮 · 检索有优先级 |
+| **项目库 P** | 代码没有"为什么"，知识与实现各说各话 | 双向引用 · diff 提案 · Git 单一真源 |
+| **知识路由** | 三者之间没有确定的走法，全靠人脑记 | 确定性规则决定"查哪、写哪"，可审计、不越权 |
+
+| Pillar | What happens without it | How the framework handles it |
+|---|---|---|
+| **Agent development** | Too many in parallel, nobody verifies; output outpaces review | WIP limits · verification as a hard exit · hook enforcement · least privilege |
+| **Knowledge base (MTR)** | Knowledge expires, sinks, contaminates itself | Three tiers (M/T/R) · dynamic floating · retrieval priorities |
+| **Project base (P)** | Code has no "why"; knowledge and implementation don't talk | Bidirectional refs · diff proposals · Git as single source of truth |
+| **Knowledge router** | No deterministic path between the three; it all lives in someone's head | Rules decide what to read and where to write; auditable, non-overreaching |
+
+**核心矛盾**：Agent 让产出变便宜 → 产出暴涨 → 但验证、理解、归档的成本没有同步下降。框架要做的，就是让后三项可控。
+
+**The core tension**: agents make production cheap → output explodes → but verification, comprehension, and archiving costs don't fall with it. The framework keeps those three under control.
+
+---
+
+## 它回答的问题 / The question it answers
+
+它不是提示词模板库，也不是 Agent 框架。
 
 > **当 AI 把你的产出放大十倍之后，你还是那个能判断对错的人吗？**
 
-A governance framework — **23 principles across 6 layers, built on a 5-store model** — for keeping human judgment intact and risk under control when AI does much of the work.
-
-It is **not** a prompt library and **not** an agent framework. It answers one question:
+It is **not** a prompt library and **not** an agent framework.
 
 > **After AI multiplies your output tenfold, are you still the person who can tell right from wrong?**
 
@@ -96,7 +124,7 @@ Most discussion asks *what models can do*. This project asks *what we are doing 
 
 ## 30 秒起步 / Quick start in 30 seconds
 
-不需要建五库，不需要写路由中间件。先做这三件：
+不需要建全套四库，不需要写路由中间件。先做这三件：
 
 **1. 给每个任务一个能跑出结果的检查**
 测试 / 构建退出码 / lint / 截图。要 Agent **展示结果**，不是自述"已完成"。
@@ -107,7 +135,7 @@ Most discussion asks *what models can do*. This project asks *what we are doing 
 **3. 硬规则用 hook，别用大写字母**
 prompt 里喊 `IMPORTANT!` 是请求，不是规则。真正的规则靠 hook / CI 强制。
 
-No five-store setup required. Start with three moves:
+No full four-store setup required. Start with three moves:
 
 1. **Give every task a check that can pass or fail** — tests, build exit codes, lint, screenshots. Ask the agent to *show the result*.
 2. **Write anything you corrected twice into your instruction file** — `AGENTS.md` / `CLAUDE.md`.
