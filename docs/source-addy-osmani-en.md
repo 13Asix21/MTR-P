@@ -11,8 +11,10 @@ source:
   - https://addyosmani.com/blog/coding-agents-manager
   - https://addyosmani.com/blog/cognitive-surrender
   - https://addyosmani.com/blog/code-agent-orchestra
-related: "[[reference-addy-osmani-zh]]"
+related: "[[source-addy-osmani-zh]]"
 ---
+
+[中文导读](source-addy-osmani-zh.md) · [← Back to README](../README.en.md)
 
 # Addy Osmani Agent 管理系列原文合集
 

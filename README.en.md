@@ -31,23 +31,17 @@ Most discussion asks *what models can do*. This project asks *what we are doing 
 ## Core model
 
 ```
-┌──────────────────────────────────────────────────────┐
-│              KNOWLEDGE BASE                           │
-│   M (Master) ──⇅── T (Trial) ──⇅── R (Rarely)         │
-│   verified          unverified        archived        │
-│   RAGFlow           Obsidian          Obsidian/_arch  │
-└─────────────────────────┬────────────────────────────┘
-                          │
-              ┌───────────▼────────────┐
-              │   KNOWLEDGE ROUTER     │
-              │   Read Path + Write Path│
-              └───────────┬────────────┘
-                          │
-┌─────────────────────────▼────────────────────────────┐
-│               PROJECT BASE                            │
-│   P: code / config / CI / ADR / tests / contracts    │
-│   Git — single source of truth                       │
-└──────────────────────────────────────────────────────┘
+Knowledge Base
+├── M (Master)   verified      → vector store (read-only)
+├── T (Trial)    unverified    → personal Obsidian knowledge base
+└── R (Rarely)   archived      → personal knowledge base _archive
+        ⇅ dynamic floating: promote / demote / revive
+                │
+     Knowledge Router
+     Read Path + Write Path
+                │
+Project Base
+└── P: code / config / CI / ADR / tests / contracts → Git, single source of truth
 ```
 
 **Two fundamentally different asset classes — never govern them with the same rules:**
@@ -74,7 +68,7 @@ Most discussion asks *what models can do*. This project asks *what we are doing 
 | **Knowledge Base** | 5 | 15 Layered retrieval · 16 Concept before generation · 17 Human curation · 18 Evidence retention · 19 Knowledge routing |
 | **Expression** | 1 | 20 Maximum concision |
 
-Full text (Chinese): [`PRINCIPLES-zh.md`](PRINCIPLES-zh.md) · English translation in progress — [contributions welcome](CONTRIBUTING.md)
+Full text: [`PRINCIPLES-en.md`](PRINCIPLES-en.md) (English) · [`PRINCIPLES-zh.md`](PRINCIPLES-zh.md) (中文，canonical)
 
 ---
 
@@ -92,17 +86,25 @@ No five-store setup required. Start with three moves:
 
 ```
 MTR-P-System/
-├── README.md                              # bilingual
-├── README.en.md                           # this file
-├── PRINCIPLES-zh.md                       # the 23 principles, full text (zh)
-├── CONTRIBUTING.md
-├── LICENSE                                # CC BY 4.0
+├── README.md                                # bilingual
+├── README.en.md                             # this file
+├── PRINCIPLES-zh.md                         # the 23 principles (中文，canonical)
+├── PRINCIPLES-en.md                         # the 23 principles (English)
+├── CONTRIBUTING.md                          # contributing guide (bilingual)
+├── CONTRIBUTING.en.md                       # contributing guide (English)
+├── LICENSE                                  # Apache License 2.0
 └── docs/
-    ├── dual-track-research-system-zh.md   # AI research system for engineering + process R&D
-    ├── comparison-ray-dalio-zh.md         # vs. Ray Dalio's *Principles*
-    ├── reference-addy-osmani-zh.md        # Addy Osmani: 10 rules for managing agents
-    └── source-addy-osmani-en.md           # Addy Osmani: three essays, full text
+    ├── dual-track-research-system-zh.md     # dual-track AI research system (中文)
+    ├── dual-track-research-system-en.md     # dual-track AI research system (English)
+    ├── comparison-ray-dalio-zh.md           # vs. Ray Dalio's *Principles* (中文)
+    ├── comparison-ray-dalio-en.md           # vs. Ray Dalio's *Principles* (English)
+    ├── reference-addy-osmani-zh.md          # Addy Osmani: ten rules (中文)
+    ├── reference-addy-osmani-en.md          # Addy Osmani: ten rules (English)
+    ├── source-addy-osmani-en.md             # three essays, full original text
+    └── source-addy-osmani-zh.md             # Chinese reading guide to the above
 ```
+
+**Bilingual convention**: every topic is a `-zh` / `-en` pair, cross-linked at the top of each file. For `source-addy-osmani-*`, the English file holds the full original text and the Chinese file is a reading guide, not a verbatim translation.
 
 ---
 
@@ -151,7 +153,6 @@ The practitioner-side principles (four-dimensional source refresh, MTR dynamic f
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md). Two things we need most:
+See [CONTRIBUTING.md](CONTRIBUTING.md) or [CONTRIBUTING.en.md](CONTRIBUTING.en.md). What we need most now:
 
-- **English translation** of `PRINCIPLES-zh.md`
 - **Field reports**: which principle broke in your context, and what you changed.

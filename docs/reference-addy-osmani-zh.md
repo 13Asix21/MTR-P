@@ -10,6 +10,8 @@ source: https://x.com/addyosmani/status/2117512471930167377
 related: "[[PRINCIPLES-zh]]"
 ---
 
+[English version](reference-addy-osmani-en.md) · [← 返回 README](../README.md)
+
 # Addy Osmani：管理 Agent 的十条建议
 
 > **来源**：Addy Osmani（Anthropic Claude Code 团队）2026-11-08 X 长文《Your coding agents made you a manager》

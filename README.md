@@ -53,24 +53,17 @@ Most discussion asks *what models can do*. This project asks *what we are doing 
 ## 核心模型 / Core model
 
 ```
-┌──────────────────────────────────────────────────────┐
-│              KNOWLEDGE BASE  知识库                    │
-│   M (Master) ──⇅── T (Trial) ──⇅── R (Rarely)         │
-│   已验证            待验证           冷宫归档            │
-│   RAGFlow         Obsidian        Obsidian/_archive   │
-└─────────────────────────┬────────────────────────────┘
-                          │
-              ┌───────────▼────────────┐
-              │   KNOWLEDGE ROUTER     │
-              │   知识路由中间件         │
-              │   Read Path + Write Path│
-              └───────────┬────────────┘
-                          │
-┌─────────────────────────▼────────────────────────────┐
-│               PROJECT BASE  项目库                     │
-│   P: code / config / CI / ADR / tests / contracts    │
-│   Git — single source of truth                       │
-└──────────────────────────────────────────────────────┘
+知识库 Knowledge Base
+├── M（Master）  已验证      → 向量知识库（只读）
+├── T（Trial）   待验证      → Obsidian 个人知识库
+└── R（Rarely）  冷宫归档    → 个人知识库 _archive
+        ⇅ 动态沉浮：上浮 / 下沉 / 复活
+                │
+     知识路由中间件 Knowledge Router
+     Read Path（检索路由）+ Write Path（回写路由）
+                │
+项目库 Project Base
+└── P：代码 / 配置 / CI / ADR / 测试 / 数据契约 → Git 单一真源
 ```
 
 **两套完全不同的资产，不能用同一套标准管：**
@@ -97,7 +90,7 @@ Most discussion asks *what models can do*. This project asks *what we are doing 
 | **知识库层** Knowledge Base | 5 | 15 分层检索 · 16 概念查询优先 · 17 人类策展 · 18 证据保留 · 19 知识路由 |
 | **表述层** Expression | 1 | 20 表述最简洁 |
 
-完整正文：[`PRINCIPLES-zh.md`](PRINCIPLES-zh.md) · English translation in progress ([contribute?](CONTRIBUTING.md))
+完整正文：[`PRINCIPLES-zh.md`](PRINCIPLES-zh.md)（中文） · [`PRINCIPLES-en.md`](PRINCIPLES-en.md)（English）
 
 ---
 
@@ -126,17 +119,27 @@ No five-store setup required. Start with three moves:
 
 ```
 MTR-P-System/
-├── README.md                              # 本文件（中英对照）
-├── README.en.md                           # English only
-├── PRINCIPLES-zh.md                       # 23 条原则正文（中文）
-├── CONTRIBUTING.md                        # 如何贡献 / how to contribute
-├── LICENSE                                # CC BY 4.0
+├── README.md                                # 本文件（中英对照 / bilingual）
+├── README.en.md                             # 纯英文 / English only
+├── PRINCIPLES-zh.md                         # 23 条原则正文（中文）
+├── PRINCIPLES-en.md                         # 23 条原则正文（English）
+├── CONTRIBUTING.md                          # 贡献指南（中英对照）
+├── CONTRIBUTING.en.md                       # Contributing guide (English)
+├── LICENSE                                  # Apache License 2.0
 └── docs/
-    ├── dual-track-research-system-zh.md   # 双轨研发的 AI 动态研究系统（工程类 + 工艺类）
-    ├── comparison-ray-dalio-zh.md         # 与达利欧《原则》的异同对照
-    ├── reference-addy-osmani-zh.md        # Addy Osmani：管理 Agent 的十条建议
-    └── source-addy-osmani-en.md           # Addy Osmani 三篇原文合集（英文）
+    ├── dual-track-research-system-zh.md     # 双轨研发 AI 动态研究系统（中文）
+    ├── dual-track-research-system-en.md     # Dual-track AI research system (English)
+    ├── comparison-ray-dalio-zh.md           # 与达利欧《原则》的异同（中文）
+    ├── comparison-ray-dalio-en.md           # vs. Ray Dalio's *Principles* (English)
+    ├── reference-addy-osmani-zh.md          # Addy Osmani 十条建议（中文）
+    ├── reference-addy-osmani-en.md          # Addy Osmani: ten rules (English)
+    ├── source-addy-osmani-en.md             # Addy Osmani 三篇原文合集（English, 一手）
+    └── source-addy-osmani-zh.md             # 上述原文的中文导读（中文）
 ```
+
+**双语约定**：每个主题一对文件，后缀 `-zh` / `-en` 表示语言；文件顶部互相链接。`source-addy-osmani-*` 是原文与导读的关系——**英文文件是原文全文，中文文件是导读而非逐字翻译**。
+
+**Bilingual convention**: every topic is a `-zh` / `-en` pair, cross-linked at the top of each file. For `source-addy-osmani-*`, the English file holds the full original text and the Chinese file is a reading guide, not a verbatim translation.
 
 **不在本仓库 / out of scope**：Vibe-Coding 方法调研、需求追溯体系落地计划——相关但主题不同。
 
@@ -181,7 +184,7 @@ Four meta-rules that outrank any single principle:
 | **Ray Dalio《原则》** | 痛苦+反思=进步、创意择优（极度求真 + 极度透明 + 可信度加权）、原则书面化并编码 |
 | **ETH Zurich 研究** | LLM 生成的 AGENTS.md 无益甚至有害，人类策展有益 |
 | **Anthropic 技能形成论文** | 生成 vs 概念查询对学习的影响（−17%） |
-| **Hermes-MTP 工程实践** | 双态分离、确定性 Gate、审批绑定、MTR-P 库层设计 |
+| **内部工程实践** | 双态分离、确定性 Gate、审批绑定、MTR-P 库层设计 |
 
 个人实践部分（信息源四维刷新、MTR 动态沉浮、并行思考重定义、可信度加权取数、持续质疑、痛苦分类）来自真实项目踩坑，不是二手转述。
 
@@ -206,12 +209,10 @@ Licensed under the [Apache License 2.0](LICENSE). Free to use, modify, distribut
 
 ## 贡献 / Contributing
 
-见 [CONTRIBUTING.md](CONTRIBUTING.md)。最需要的两件事：
+见 [CONTRIBUTING.md](CONTRIBUTING.md) 或 [CONTRIBUTING.en.md](CONTRIBUTING.en.md)。最需要的一件事：
 
-- **英文翻译**（`PRINCIPLES.en.md` 尚未完成）
 - **实践反馈**：哪条原则在你的场景失效了？怎么改的？
 
-See [CONTRIBUTING.md](CONTRIBUTING.md). Two things we need most:
+See [CONTRIBUTING.md](CONTRIBUTING.md) / [CONTRIBUTING.en.md](CONTRIBUTING.en.md). What we need most now:
 
-- **English translation** of `PRINCIPLES-zh.md`
 - **Field reports**: which principle broke in your context, and what you changed.

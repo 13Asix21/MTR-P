@@ -1,5 +1,7 @@
 # 贡献指南 / Contributing
 
+[English version](CONTRIBUTING.en.md) · [← 返回 README](README.md)
+
 感谢你有兴趣参与。这个项目的价值不在于"又多了一套原则"，而在于**这些原则是否经得起别人场景的检验**。
 
 Thanks for your interest. The value here isn't "yet another set of principles" — it's whether these principles survive contact with *your* context.

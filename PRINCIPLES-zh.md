@@ -15,14 +15,14 @@ source:
   - Simon Willison: Agentic Engineering Patterns
   - Agent Standard (Anthropic + OpenAI + Cognition + LangChain)
   - OpenAI Model Spec / Anthropic Constitution for Claude
-  - Hermes-MTP 可运转研发体系实施任务书
-  - 知识卡片 Agent · MTP 衔接提示词
+  - 内部研发体系实施任务书
+  - 知识卡片 Agent 衔接提示词
 related:
   - "[[reference-addy-osmani-zh]]"
   - "[[source-addy-osmani-en]]"
 ---
 
-[← 返回 README](README.md) · [English translation needed](CONTRIBUTING.md)
+[← 返回 README](README.md) · [English version](PRINCIPLES-en.md)
 
 # MTR-P 知识-项目体系：AI 研发原则与风险可控框架
 
@@ -31,7 +31,7 @@ related:
 > **适用场景**：日常 Agent 编排、MTR 三库动态沉浮、P 库工程资产治理、知识库建设与维护、AI 辅助研发全流程。
 > **核心立场**：模型是变量，harness 是常量，原则是地基。投资比例要对应——不把时间花在调 Prompt 上，要花在建体系、设门禁、攒知识上。
 
-> **命名说明**：早前口语称"MTP 体系"（M/T/P 三库），现正式定名为 **MTR-P 知识-项目体系**——因为 **M/T/R 本质上是同一类东西（知识库的三个层级）**，而 **P 是另一种性质的东西（项目库）**。用 `MTR-P` 这个写法，既保留了三层知识库的完整结构（含 R 冷宫层），又用连字符 `-` 把"知识库"与"项目库"两类资产清晰隔开。
+> **命名说明**：早前内部口语称"MTP 体系"（M/T/P 三库），现正式定名为 **MTR-P 知识-项目体系**——因为 **M/T/R 本质上是同一类东西（知识库的三个层级）**，而 **P 是另一种性质的东西（项目库）**。用 `MTR-P` 这个写法，既保留了三层知识库的完整结构（含 R 冷宫层），又用连字符 `-` 把"知识库"与"项目库"两类资产清晰隔开。
 >
 > **一句话记法**：`MTR` 是"我知道什么"，`P` 是"我做了什么"，中间靠**知识路由中间件**双向打通。
 
@@ -67,9 +67,9 @@ M/T/R 三个库是**同一类东西**——知识资产，按"掌握程度 + 使
 
 | 库 | 全称 | 定位 | 载体 | 写入权限 | 动态规则 |
 |---|---|---|---|---|---|
-| **M 库** | Master | 已掌握、已验证的知识与方法 | RAGFlow（正门只读） | 人类确认"掌握"后经审批转入 | 使用频繁的信息自动上浮到此层 |
-| **T 库** | Trial | 待验证的草案、卡片、试错记录 | Obsidian Vault | Agent 生成草案 → Artifact Store → 人工审批 → 受控写入 | 知识默认落点；被验证后可上浮 M 库 |
-| **R 库** | Rarely | T 库中不常用的归档层（冷宫） | Obsidian Vault `_archive/` | 从 T 库下沉，不单独写入 | 冷宫不是删除——可检索、可回滚、可复活 |
+| **M 库** | Master | 已掌握、已验证的知识与方法 | 向量知识库（只读） | 人类确认"掌握"后经审批转入 | 使用频繁的信息自动上浮到此层 |
+| **T 库** | Trial | 待验证的草案、卡片、试错记录 | Obsidian 个人知识库 | Agent 生成草案 → Artifact Store → 人工审批 → 受控写入 | 知识默认落点；被验证后可上浮 M 库 |
+| **R 库** | Rarely | T 库中不常用的归档层（冷宫） | Obsidian 个人知识库 `_archive/` | 从 T 库下沉，不单独写入 | 冷宫不是删除——可检索、可回滚、可复活 |
 
 > **动态沉浮**：知识按使用频率在三层间流动。常用 → 上浮到 M；不用 → 下沉到 R；R 被重新使用 → 上浮回 T 或 M。
 
@@ -79,7 +79,7 @@ P 库是**另一种性质的东西**——它是项目的**实体资产**，不�
 
 | 库 | 全称 | 定位 | 载体 | 写入权限 |
 |---|---|---|---|---|
-| **P 库** | Project | 代码、配置、CI、部署脚本、项目级文档（README/ADR）、测试资产、数据契约 | Git 仓库（如 `mtp-orchestrator/`） | Agent 只生成 diff/提案，人类 review + merge 后才落库 |
+| **P 库** | Project | 代码、配置、CI、部署脚本、项目级文档（README/ADR）、测试资产、数据契约 | Git 仓库（如 `example-project/`） | Agent 只生成 diff/提案，人类 review + merge 后才落库 |
 
 **P 库与 MTR 的本质区别**：
 
@@ -90,7 +90,7 @@ P 库是**另一种性质的东西**——它是项目的**实体资产**，不�
 | **判断标准** | 是否可信、是否验证过 | 是否可运行、是否通过测试、是否符合契约 |
 | **演进方式** | 动态沉浮（M↔T↔R） | 版本控制（commit/branch/tag） |
 | **回滚方式** | 下沉/上浮，不删除 | git revert / 分支回退 |
-| **权威源** | RAGFlow（M）+ Obsidian（T/R） | Git 仓库（单一真源） |
+| **权威源** | 向量知识库（M）+ Obsidian 个人知识库（T/R） | Git 仓库（单一真源） |
 
 ### 三、P 库与 T 库的双向关联
 
@@ -390,7 +390,7 @@ P 库（代码/工程）  ←── 引用 ──→  T 库（知识/理由）
   - 需求歧义 → 问需求方
   - 概念不理解 → 问 Agent 解释（conceptual inquiry > generation），然后按原则 5A 追到边界
   - 工具行为不确定 → 查文档，不猜
-  - MTR-P 知识库有相关内容 → 先查 M 库（RAGFlow 检索），再查 T 库（Obsidian）
+  - MTR-P 知识库有相关内容 → 先查 M 库（向量知识库检索），再查 T 库（Obsidian 个人知识库）
 - **反模式**："先让 Agent 跑起来看看结果"——用 Agent 的输出来猜需求
 
 ### 7. 体系连接原则
@@ -404,7 +404,7 @@ P 库（代码/工程）  ←── 引用 ──→  T 库（知识/理由）
   - **T → P**：每个可落地的知识卡片必须标注实现位置（`impl_ref: p://path/to/file#Lx-Ly`）
   - **无关联是技术债**：代码没有理由 = 未来接手的人（包括 AI）无法判断该不该改
 - **问答档案化**：与 Agent 的每次有价值的问答，整理后归入 T 库对应卡片——这是数字孪生的第一手语料
-- **Obsidian 双向链接**：新笔记必须 `[[关联]]` 到已有笔记；孤立笔记 = 沉没的知识
+- **Obsidian 个人知识库的双向链接**：新笔记必须 `[[关联]]` 到已有笔记；孤立笔记 = 沉没的知识
 - **路由中间件是必需件**：P 与 T 之间的检索/回写路线由知识路由中间件决策，不靠人工记忆（见第七章设计）
 - **AGENTS.md / CLAUDE.md 复利**：每次纠正了两次的东西，写进指令文件
 - **四库协同回写链路**：
@@ -540,7 +540,7 @@ Plan → Spawn → Monitor → Verify → Integrate → Retro
 - **Agent 可以自主做**：搜索仓库、创建分支、编辑已批准路径、跑本地测试、生成测试、修失败的单测、准备 PR
 - **Agent 不应自动做**：关闭安全检查、改变成功标准、降低质量阈值、批准自己的代码、访问生产数据、合并高风险变更、部署到生产
 - **MTR-P 四库权限边界**：
-  - M 库（RAGFlow，知识）→ Agent 只读检索，不自动写
+  - M 库（向量知识库，知识）→ Agent 只读检索，不自动写
   - T 库（Obsidian，知识）→ Agent 生成草案，经 Artifact Store + 人工审批后受控写入
   - R 库（Obsidian 归档，知识）→ 从 T 库下沉，不单独写入
   - P 库（Git，项目）→ 只生成 diff/提案，**不自动 commit/push/merge**
@@ -587,8 +587,8 @@ Plan → Spawn → Monitor → Verify → Integrate → Retro
 **各级说明**：
 
 - **P 库优先（项目上下文内）**：问"这个项目为什么用 PostgreSQL"→ 先查 P 库 ADR，再查 T 库决策卡片，而不是先问 AI 通用知识
-- **M 库优先（通用知识）**：先查 M 库（RAGFlow 只读检索），找到已验证的知识直接用
-- **T 库次之**：M 库没有时查 T 库（Obsidian）、使用时注意 `status: 待验证`
+- **M 库优先（通用知识）**：先查 M 库（向量知识库 只读检索），找到已验证的知识直接用
+- **T 库次之**：M 库没有时查 T 库（Obsidian 个人知识库）、使用时注意 `status: 待验证`
 - **R 库冷宫**：可检索但不主动推荐；被使用后触发上浮机制
 - **上浮触发**：R 库内容被检索并使用后 → 标记"活跃" → 上浮回 T 库 → 验证后可上浮 M 库
 - **下沉触发**：T 库内容超过设定时间未被使用/未验证 → 下沉 R 库
@@ -614,7 +614,7 @@ Plan → Spawn → Monitor → Verify → Integrate → Retro
   - M 库 → 人类确认"掌握"后经审批转入，Agent 不自动写
   - T 库 → Agent 生成 `status: 待验证` 草案，人工审批后受控写入
   - AGENTS.md → Agent 可提议，人类必须 merge
-- **知识库同理**：Obsidian / RAGFlow 中的核心笔记必须人工策展；Agent 生成的只能是草稿
+- **知识库同理**：Obsidian 个人知识库 / 向量知识库中的核心笔记必须人工策展；Agent 生成的只能是草稿
 
 ### 18. 证据保留原则
 
@@ -673,10 +673,10 @@ Plan → Spawn → Monitor → Verify → Integrate → Retro
 
 **边界（不做的事）**：
 
-- ❌ 不实现检索算法本身——M 库走 RAGFlow、T/R 库走 Obsidian 全文检索、P 库走 ripgrep/git grep
+- ❌ 不实现检索算法本身——M 库走 向量知识库、T/R 库走 Obsidian 全文检索、P 库走 ripgrep/git grep
 - ❌ 不直接写任何库——只产出检索计划与写入提案，写入仍走各库自己的审批通道
 - ❌ 不用 LLM 做路由主决策——LLM 只可选地用于"查询意图分类"，且分类结果必须落进枚举，不允许自由文本路由
-- ❌ 不替代 MTP Control Plane——路由中间件是 Control Plane 的一个**子模块**，共享同一套 Ticket/Approval/Artifact
+- ❌ 不替代 MTR-P Control Plane——路由中间件是 Control Plane 的一个**子模块**，共享同一套 Ticket/Approval/Artifact
 
 ### 7.2 架构位置
 
@@ -702,7 +702,7 @@ Plan → Spawn → Monitor → Verify → Integrate → Retro
         │                  │                  │
    ┌────▼──────────────────▼──────────────────▼────┐
    │  Adapters（各库自己的适配器，不越权）           │
-   │  RAGFlow(M) │ Obsidian(T/R) │ Git(P) │ Artifact│
+   │  向量知识库(M) │ Obsidian(T/R) │ Git(P) │ Artifact│
    └───────────────────────────────────────────────┘
 ```
 
@@ -717,7 +717,7 @@ Plan → Spawn → Monitor → Verify → Integrate → Retro
 | `query` | string | 原始问题 |
 | `intent` | enum | `project_context` / `general_knowledge` / `method_skill` / `decision_history` / `cold_detail` |
 | `project_id` | string? | 有项目上下文时必填 |
-| `caller` | string | 调用方（WorkBuddy / Hermes Worker / Agent） |
+| `caller` | string | 调用方（WorkBuddy / 执行 Worker / Agent） |
 | `budget_ms` | int | 总时限，用于决定降级 |
 | `explicit_stores` | string[]? | 调用方显式指定要查的库（如用户说"翻翻冷宫"） |
 
@@ -752,8 +752,8 @@ Plan → Spawn → Monitor → Verify → Integrate → Retro
   "route_id": "rt_20261111_150210_ab12",
   "intent": "project_context",
   "plan": [
-    { "store": "P", "adapter": "git-grep", "filter": { "project_id": "mtp-orchestrator" }, "weight": 1.0, "top_k": 8 },
-    { "store": "M", "adapter": "ragflow", "weight": 0.8, "top_k": 5 },
+    { "store": "P", "adapter": "git-grep", "filter": { "project_id": "example-project" }, "weight": 1.0, "top_k": 8 },
+    { "store": "M", "adapter": "vector-db", "weight": 0.8, "top_k": 5 },
     { "store": "T", "adapter": "obsidian-search", "weight": 0.6, "top_k": 5 }
   ],
   "degrade_policy": { "min_relevance": 0.55, "on_empty": "next" },
@@ -771,7 +771,7 @@ Content-Type: application/json
 {
   "query": "这个项目为什么用 SQLite WAL 而不是 PostgreSQL",
   "intent": "decision_history",
-  "project_id": "mtp-orchestrator",
+  "project_id": "example-project",
   "caller": "workbuddy",
   "budget_ms": 2000
 }
@@ -854,7 +854,7 @@ Content-Type: application/json
   "source": { "agent_id": "card-agent", "task_id": "T07", "attempt_id": "a_003" },
   "evidence": { "sha256": "sha256:...", "tests": ["evals/method_trial_01.json"] },
   "confidence": "unverified",
-  "project_id": "mtp-orchestrator"
+  "project_id": "example-project"
 }
 ```
 
@@ -878,14 +878,14 @@ Content-Type: application/json
 
 | 字段 | 写在哪 | 值格式 | 用途 |
 |---|---|---|---|
-| `knowledge_ref` | P 库文件（注释头/ADR frontmatter） | `[[T库卡片名]]` 或 `m://ragflow/doc_id` | 从代码追溯"为什么" |
+| `knowledge_ref` | P 库文件（注释头/ADR frontmatter） | `[[T库卡片名]]` 或 `m://vector-db/doc_id` | 从代码追溯"为什么" |
 | `impl_ref` | T 库卡片 frontmatter | `p://path/to/file#L10-L30` | 从知识追溯"在哪落地" |
 
 #### 7.5.2 P 库写法示例
 
 ```python
-# mtp-orchestrator/mtp_control/db.py
-# knowledge_ref: [[知识卡片-SQLite-WAL选型]] m://ragflow/adr-db-001
+# example-project/src/db.py
+# knowledge_ref: [[知识卡片-SQLite-WAL选型]] m://vector-db/adr-db-001
 # reason: 单机低并发场景，WAL 足够；多主机再迁 PostgreSQL（见 ADR-0001）
 ENGINE = create_engine("sqlite:///mtp-control.db", connect_args={"journal_mode": "WAL"})
 ```
@@ -897,10 +897,10 @@ ENGINE = create_engine("sqlite:///mtp-control.db", connect_args={"journal_mode":
 title: 知识卡片-SQLite-WAL选型
 type: decision
 status: 待验证
-project_ref: p://mtp-orchestrator
+project_ref: p://example-project
 impl_ref:
-  - p://mtp-orchestrator/mtp_control/db.py#L1-L8
-  - p://mtp-orchestrator/docs/adr/0001-control-boundaries.md#L20-L45
+  - p://example-project/src/db.py#L1-L8
+  - p://example-project/docs/adr/0001-db-choice.md#L20-L45
 ---
 ```
 
@@ -981,7 +981,7 @@ audit:
   "direction": "read",
   "intent": "decision_history",
   "caller": "workbuddy",
-  "project_id": "mtp-orchestrator",
+  "project_id": "example-project",
   "plan": ["P_adr", "T", "M"],
   "hits": { "P_adr": 2, "T": 1, "M": 0 },
   "degraded": false,
@@ -1064,11 +1064,11 @@ audit:
 | **Anthropic Constitution** | 四层优先级：安全 > 伦理 > 合规 > 有用 | 11, 13 |
 | **ETH Zurich 研究** | LLM 生成 AGENTS.md 有害，人类策展有益 | 17 |
 | **Anthropic 技能形成论文** | 生成 vs 概念查询对学习的影响（-17%） | 16 |
-| **Hermes-MTP 任务书** | MTR-P 体系、双态分离、确定性 Gate、审批绑定、可恢复 | 7, 11, 12, 13, 14, 15, 17, 18 |
+| **内部研发体系任务书** | MTR-P 体系、双态分离、确定性 Gate、审批绑定、可恢复 | 7, 11, 12, 13, 14, 15, 17, 18 |
 | **知识卡片 Agent 提示词** | M/T/P 权限边界、证据分类、去重规则、 Artifact SHA-256 | 7, 13, 15, 17, 18 |
-| **雷爹原稿 v2** | 信息源四维刷新、MTR 动态沉浮、并行思考重定义、链路深究双类、快速部署学习层、深度复盘可信链路、M 库优先、表述最简洁、可回滚、MTR-P 命名与路由中间件 | 1, 2, 5, 8, 9, 10, 14, 15, 19 |
-| **达利欧《原则》**（RAGFlow「个人成长」库原文） | 痛苦+反思=进步、现实反馈调整原则、创意择优=极度求真+极度透明+可信度加权、五步流程、机器模型、原则书面化并编码 | 10, 11, 12, 18, 21, 22, 23 |
-| **雷爹原稿 v3** | 可信度加权取数于 T/R 库 + 能力边界、结构化质疑 Agent / 真人质疑者、痛苦场景专用原则 | 21, 22, 23 |
+| **Asix.Lee 原稿 v2** | 信息源四维刷新、MTR 动态沉浮、并行思考重定义、链路深究双类、快速部署学习层、深度复盘可信链路、M 库优先、表述最简洁、可回滚、MTR-P 命名与路由中间件 | 1, 2, 5, 8, 9, 10, 14, 15, 19 |
+| **达利欧《原则》**（向量知识库「个人成长」库原文） | 痛苦+反思=进步、现实反馈调整原则、创意择优=极度求真+极度透明+可信度加权、五步流程、机器模型、原则书面化并编码 | 10, 11, 12, 18, 21, 22, 23 |
+| **Asix.Lee 原稿 v3** | 可信度加权取数于 T/R 库 + 能力边界、结构化质疑 Agent / 真人质疑者、痛苦场景专用原则 | 21, 22, 23 |
 
 ---
 

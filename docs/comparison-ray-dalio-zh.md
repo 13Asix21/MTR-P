@@ -8,15 +8,17 @@ tags:
   - decision-making
   - knowledge-base
 created: 2026-11-11
-source: RAGFlow「个人成长」库（fa6bd58ab0db11f1a48cbf9ecd8f0d75）·《原则》中信版全本 PDF 分片
+source: 内部个人知识库检索 ·《原则》中信版全本 PDF
 related:
   - "[[PRINCIPLES-zh]]"
   - "[[reference-addy-osmani-zh]]"
 ---
 
+[英文版](comparison-ray-dalio-en.md) · [← 返回 README](../README.md)
+
 # 达利欧《原则》与 MTR-P 体系对比
 
-> **检索方式**：RAGFlow `search_chunks` + `ask_question`，库 = 个人成长（724 篇文档 / 20260 chunks）
+> **检索方式**：向量知识库 `search_chunks` + `ask_question`，库 = 个人成长（724 篇文档 / 20260 chunks）
 > **证据强度**：原文直引（chunk 级），非二手转述
 
 ---
